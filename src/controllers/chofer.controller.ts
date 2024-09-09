@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Body } from "@nestjs/common";
 import { Chofer } from "src/models/chofer.entity";
 import { Bus } from "src/models/bus.entity";
-import { ChoferService } from "src/services/chofer.sesrvice";
+import { ChoferService } from "src/services/chofer.service";
 import { ResponsePayload } from "src/types/payloads";
 
 @Controller('api/choferes')

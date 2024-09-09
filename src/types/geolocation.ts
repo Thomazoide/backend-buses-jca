@@ -15,6 +15,6 @@ interface locationData{
 }
 
 export interface geolocation{
-    mac: string
+    rut: string
     locations: locationData[]
 }

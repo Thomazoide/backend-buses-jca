@@ -79,6 +79,15 @@ export class ChoferController{
         }
     }
 
+    @Put('check-rut')
+    async CheckRut(@Body() chofer: Partial<Chofer>): Promise<boolean>{
+        try{
+            return await this.service.CheckRut(chofer.rut)
+        }catch{
+            return false
+        }
+    }
+
     @Delete('delete')
     async DeleteChofer(@Body() chofer: Partial<Chofer>): Promise<ResponsePayload>{
         try{

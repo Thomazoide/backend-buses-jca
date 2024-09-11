@@ -56,4 +56,9 @@ export class ChoferService{
             message: "Chofer eliminado"
         }
     }
+
+    async CheckRut(rut: string): Promise<boolean>{
+        const isValid: boolean = await this.repositorio.findOneBy({rut}) ? true : false
+        return isValid
+    }
 }

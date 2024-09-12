@@ -58,6 +58,22 @@ export class ChoferController{
         }
     }
 
+    @Post('create')
+    async CreateNewChofer(@Body() chofer: Partial<Chofer>): Promise<ResponsePayload>{
+        try{
+            return {
+                data: await this.service.CreateChofer(chofer),
+                error: false,
+                message: "Chofer creado"
+            }
+        }catch(error: any){
+            return {
+                error: true,
+                message: error.message
+            }
+        }
+    }
+
     @Put('update')
     async UpdateChofer(@Body() chofer: Partial<Chofer>): Promise<ResponsePayload>{
         try{

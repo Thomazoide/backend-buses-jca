@@ -31,6 +31,14 @@ export class ChoferService{
         return exists
     }
 
+    async CreateChofer(chofer: Partial<Chofer>): Promise<Chofer>{
+        const exists: Chofer | null = await this.repositorio.findOneBy({rut: chofer.rut})
+        if(exists){
+            throw new Error("Chofer ya existente")
+        }
+        return await this.repositorio.save(chofer)
+    }
+
     async UpdateChofer(chofer: Partial<Chofer>): Promise<ResponsePayload>{
         const updateResult = await this.repositorio.update({id: chofer.id}, chofer)
         if(updateResult.affected === 0){

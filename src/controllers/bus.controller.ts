@@ -58,6 +58,22 @@ export class BusController{
         }
     }
 
+    @Post('create')
+    async CreateNewBus(@Body() bus: Partial<Bus>): Promise<ResponsePayload>{
+	try{
+	    return {
+		data: await this.service.CreateBus(bus),
+		error: false,
+		message: "Bus creado"
+	    }
+	}catch(error: any){
+	    return {
+		error: true,
+		message: error.message
+	    }
+	}
+    }
+
     @Put('update')
     async UpdateBus(@Body() bus: Partial<Bus>): Promise<ResponsePayload>{
         try{

@@ -31,6 +31,14 @@ export class BusService{
         return exists
     }
 
+    async CreateBus(bus: Partial<Bus>): Promise<Bus>{
+	const exists: Bus | null = await this.repositorio.findOneBy({patente: bus.patente})
+	if(exists){
+	    throw new Error('Bus ya existente...')
+	}
+	return await this.repositorio.save(bus)
+    }
+
     async UpdateBus(bus: Partial<Bus>): Promise<ResponsePayload>{
         const updateResult = await this.repositorio.update({id: bus.id}, bus)
         if(updateResult.affected === 0){

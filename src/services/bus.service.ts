@@ -15,6 +15,15 @@ export class BusService{
         return this.repositorio.find()
     }
 
+    async FindByID(id: number): Promise<Bus>{
+	    const exists: Bus | null = await this.repositorio.findOneBy({id})
+	    if(!exists){
+		    throw new Error('Bus no existente')
+	    }
+	    return exists
+
+    }
+
     async FindByPatente(patente: string): Promise<Bus>{
         const exists: Bus | null = await this.repositorio.findOneBy({patente})
         if(!exists){

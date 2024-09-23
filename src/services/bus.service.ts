@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { IsNull, Repository } from "typeorm";
 import { Bus } from "src/models/bus.entity";
 import { ResponsePayload } from "src/types/payloads";
 
@@ -40,6 +40,10 @@ export class BusService{
             error: false,
             message: "Bus actualizado!"
         }
+    }
+
+    async GetUnassignedBuses(): Promise<Bus[]>{
+        return await this.repositorio.findBy({chofer: IsNull()})
     }
 
     async DeleteBus(bus: Partial<Bus>): Promise<ResponsePayload>{

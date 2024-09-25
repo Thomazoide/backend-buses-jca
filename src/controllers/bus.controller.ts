@@ -90,6 +90,22 @@ export class BusController{
 	}
     }
 
+    @Post('create-many')
+    async CreateMany(@Body() buses: Partial<Bus>[]): Promise<ResponsePayload>{
+	try{
+	    return {
+		data: await this.service.CreateMany(buses),
+		message: "Buses añadidos",
+		error: false
+	    }
+	}catch(err: any){
+	    return {
+		message: "Error al crear buses",
+		error: true
+	    }
+	}
+    }
+
     @Put('update')
     async UpdateBus(@Body() bus: Partial<Bus>): Promise<ResponsePayload>{
         try{

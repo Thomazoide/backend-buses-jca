@@ -48,6 +48,10 @@ export class BusService{
 	return await this.repositorio.save(bus)
     }
 
+    async CreateMany(buses: Partial<Bus>[]): Promise<Bus[]>{
+	return await this.repositorio.save(buses)
+    }
+
     async UpdateBus(bus: Partial<Bus>): Promise<ResponsePayload>{
         const updateResult = await this.repositorio.update({id: bus.id}, bus)
         if(updateResult.affected === 0){

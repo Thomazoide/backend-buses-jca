@@ -52,7 +52,8 @@ export class ChoferController{
             }
         }catch(error: any){
             return {
-                error: true,
+		data: undefined,
+                error: false,
                 message: error.message
             }
         }

@@ -42,6 +42,22 @@ export class BusController{
         }
     }
 
+    @Post('id')
+    async GetByID(@Body() bus: Partial<Bus>): Promise<ResponsePayload>{
+	try{
+	    return {
+		data: await this.service.FindByID(bus.id),
+		message: "Bus encontrado",
+		error: false
+	    }
+	}catch(err: any){
+	    return {
+		message: "Bus no encontrado",
+		error: true
+	    }
+	}
+    }
+
     @Post('patente')
     async FindOneByPatente(@Body() bus: Partial<Bus>): Promise<ResponsePayload>{
         try{

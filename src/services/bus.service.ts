@@ -64,7 +64,7 @@ export class BusService{
     }
 
     async GetUnassignedBuses(): Promise<Bus[]>{
-        return await this.repositorio.findBy({chofer: IsNull()})
+        return await this.repositorio.findBy({chofer: null})
     }
 
     async DeleteBus(bus: Partial<Bus>): Promise<ResponsePayload>{

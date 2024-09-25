@@ -15,6 +15,15 @@ export class BusService{
         return this.repositorio.find()
     }
 
+    async FindByID(id: number): Promise<Bus>{
+	    const exists: Bus | null = await this.repositorio.findOneBy({id})
+	    if(!exists){
+		    throw new Error('Bus no existente')
+	    }
+	    return exists
+
+    }
+
     async FindByPatente(patente: string): Promise<Bus>{
         const exists: Bus | null = await this.repositorio.findOneBy({patente})
         if(!exists){
@@ -29,6 +38,14 @@ export class BusService{
             throw new Error('Bus no encontrado...')
         }
         return exists
+    }
+
+    async CreateBus(bus: Partial<Bus>): Promise<Bus>{
+	const exists: Bus | null = await this.repositorio.findOneBy({patente: bus.patente})
+	if(exists){
+	    throw new Error('Bus ya existente...')
+	}
+	return await this.repositorio.save(bus)
     }
 
     async UpdateBus(bus: Partial<Bus>): Promise<ResponsePayload>{

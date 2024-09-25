@@ -89,6 +89,8 @@ export class ChoferController{
     @Put('update-location')
     async UpdateChoferLocation(@Body() chofer: Partial<Chofer>): Promise<void>{
         try{
+	    console.log(chofer)
+	    console.log(new Date(chofer.ubicacion.locations[0].timestamp))
             await this.service.UpdateChoferLocation(chofer)
         }catch(error: any){
             console.log(error)

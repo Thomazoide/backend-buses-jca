@@ -26,22 +26,6 @@ export class BusController{
         }
     }
 
-    @Get('unassigned')
-    async GetUnassignedBuses(): Promise<ResponsePayload>{
-        try{
-            return {
-                data: await this.service.GetUnassignedBuses(),
-                message: "Buses sin asignar...",
-                error: false
-            }
-        }catch(err: any){
-            return {
-                message: err.message,
-                error: true
-            }
-        }
-    }
-
     @Post('patente')
     async FindOneByPatente(@Body() bus: Partial<Bus>): Promise<ResponsePayload>{
         try{
@@ -72,6 +56,22 @@ export class BusController{
                 error: true
             }
         }
+    }
+
+    @Post('create')
+    async CreateNewBus(@Body() bus: Partial<Bus>): Promise<ResponsePayload>{
+	try{
+	    return {
+		data: await this.service.CreateBus(bus),
+		error: false,
+		message: "Bus creado"
+	    }
+	}catch(error: any){
+	    return {
+		error: true,
+		message: error.message
+	    }
+	}
     }
 
     @Put('update')
